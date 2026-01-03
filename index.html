@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>meow</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;}
+  body{
+    background-color:#ffcce0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    height:100vh;text-align:center;overflow:hidden;position:relative;
+  }
+  .hidden{display:none;}
+  .fade-in{animation:fadeInUp 1s ease forwards;}
+  @keyframes fadeInUp{
+    0%{opacity:0;transform:translateY(30px);}
+    100%{opacity:1;transform:translateY(0);}
+  }
+  h1{font-size:2rem;color:#d6004c;margin-top:20px;}
+  button{
+    padding:10px 20px;margin:10px;font-size:1.2rem;
+    border:none;border-radius:10px;
+    background-color:#ff6699;color:#fff;cursor:pointer;
+    transition:0.3s;
+  }
+  button:hover{transform:scale(1.1);background-color:#ff3380;}
+  img.teddy{width:150px;animation:fadeInUp 1s ease forwards;}
+  .big-heart{font-size:5rem;margin-top:20px;color:#d6004c;animation:pulse 1s infinite;}
+  @keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1);}}
+
+  /* Floating hearts background */
+  .heart{
+    position:absolute;
+    color:rgba(255,0,102,0.4);
+    font-size:1.5rem;
+    animation:float 10s linear infinite;
+  }
+  @keyframes float{
+    0%{transform:translateY(100vh) rotate(0deg);opacity:1;}
+    100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- floating hearts -->
+<script>
+  // create floating hearts dynamically
+  for(let i=0;i<20;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.style.left=Math.random()*100+'%';
+    h.style.fontSize=(Math.random()*2+1)+'rem';
+    h.style.animationDuration=(Math.random()*5+5)+'s';
+    h.textContent='❤️';
+    document.body.appendChild(h);
+  }
+</script>
+
+<!-- Page 1 -->
+<div id="page1" class="fade-in">
+  <img src="nikka.jpg" class="teddy" alt="Teddy">
+  <h1>hiiiiiii, labzzzs❤️</h1>
+  <button onclick="goToPage(2)">Next ➡️</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="hidden fade-in">
+  <h1>Do you Love me? ❤️</h1>
+  <div style="margin-top:20px;">
+    <button onclick="goToPage(3)">Yes ❤️</button>
+    <button id="noBtn">No 💔</button>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="hidden fade-in">
+  <h1>Hey labzszs❤️, <br>I know you love me <br> love you too!</h1>
+  <button onclick="goToPage(4)">Next ➡️</button>
+</div>
+
+<!-- Page 4 -->
+<div id="page4" class="hidden fade-in">
+  <h1>I am so lucky, Love you ❤️</h1>
+  <div class="big-heart">❤️</div>
+</div>
+
+<script>
+  function goToPage(n){
+    document.querySelectorAll('div[id^="page"]').forEach(p=>p.classList.add('hidden'));
+    const nextPage=document.getElementById('page'+n);
+    nextPage.classList.remove('hidden');
+    nextPage.classList.add('fade-in');
+    // play music on page change
+    const audio=document.getElementById('bgm');
+    audio.play().catch(()=>{}); // ignore autoplay errors
+  }
+
+  // No button movement
+  const noBtn = document.getElementById('noBtn');
+  noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  });
+</script>
+
+<!-- একদম নিচে অডিও ট্যাগ -->
+<audio id="bgm" src="fafak.mp3" autoplay></audio>
+
+</body>
+</html>

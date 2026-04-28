@@ -1,0 +1,1 @@
+{\n  "name": "@xian401/meow-react",\n  "version": "0.1.0",\n  "description": "React component library",\n  "main": "dist/index.js",\n  "peerDependencies": {\n    "react": "^17.0.0 || ^18.0.0",\n    "react-dom": "^17.0.0 || ^18.0.0"\n  },\n  "scripts": {\n    "build": "tsc && rollup -c",\n    "dev": "webpack --config webpack.dev.js"\n  }\n}
